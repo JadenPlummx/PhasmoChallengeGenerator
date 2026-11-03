@@ -13,9 +13,33 @@
         Background="#252525"
         WindowStartupLocation="CenterScreen">
 
-    <Grid>
 
-    </Grid>
+<Grid Margin="20">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <!-- Application Title -->
+    <TextBlock Text="Phasmophobia Challenges"
+               FontSize="24"
+               FontWeight="Bold"
+               Foreground="White"
+               HorizontalAlignment="Center"
+               Margin="0,0,0,20"/>
+
+    <!-- Ghost Hunting Rules (hopefully you survive) -->
+    <ScrollViewer Grid.Row="1"
+                  VerticalScrollBarVisibility="Auto">
+
+        <StackPanel>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</Grid>
+
 </Window>
 
     
