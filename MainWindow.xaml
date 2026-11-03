@@ -32,9 +32,49 @@
     <ScrollViewer Grid.Row="1"
                   VerticalScrollBarVisibility="Auto">
 
-        <StackPanel>
+
+<StackPanel>
+
+    <!-- This is Rule 1 -->
+    <GroupBox Header="Rule 1"
+              Foreground="White"
+              Margin="0,5">
+
+        <StackPanel Margin="10">
+
+            <TextBlock x:Name="timerOne"
+                       Text="05:00"
+                       FontSize="24"
+                       Foreground="White"/>
+
+            <TextBlock x:Name="actionOne"
+                       Text="If the ghost starts hunting..."
+                       Foreground="White"
+                       Margin="0,5"/>
+
+            <TextBlock x:Name="consequenceOne"
+                       Text="You cannot use your flashlight for 2 minutes."
+                       Foreground="LightGray"/>
+
+            <WrapPanel Margin="0,10,0,0">
+                <Button x:Name="rerollOne"
+                        Content="Reroll"
+                        Margin="0,0,5,0"/>
+
+                <Button x:Name="disableOne"
+                        Content="Disable"
+                        Margin="0,0,5,0"/>
+
+                <Button x:Name="deleteOne"
+                        Content="Delete"/>
+            </WrapPanel>
 
         </StackPanel>
+
+    </GroupBox>
+
+</StackPanel>
+
 
     </ScrollViewer>
 
