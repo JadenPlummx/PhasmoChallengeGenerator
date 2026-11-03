@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhasmoChallengeGenerator"
         mc:Ignorable="d"
-        Title="Phasmophobia Challenges"
         Height="600"
         Width="800"
         MinHeight="550"
