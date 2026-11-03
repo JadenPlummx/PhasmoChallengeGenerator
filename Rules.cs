@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PhasmoChallengeGenerator
 {
-    internal class Rules
+    internal class Rule
     {
         // Instance variables.
         int time;
@@ -13,5 +13,13 @@ namespace PhasmoChallengeGenerator
 
         int SECONDS_PER_MINUTE = 60;
         int DEFAULT_TIME = 900;
+
+        // Constructor.
+        public Rule()
+        {
+            time = DEFAULT_TIME;
+            action = "action";
+            consequence = "consequence";
+        }
     }
 }
