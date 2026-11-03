@@ -73,6 +73,44 @@
 
     </GroupBox>
 
+        <!-- This is Rule 2 -->
+        <GroupBox Header="Rule 2"
+                  Foreground="White"
+                  Margin="0,5">
+        
+            <StackPanel Margin="10">
+        
+                <TextBlock x:Name="timerTwo"
+                           Text="10:00"
+                           FontSize="24"
+                           Foreground="White"/>
+
+                <TextBlock x:Name="actionTwo"
+                           Text="If you enter the ghost room..."
+                           Foreground="White"
+                           Margin="0,5"/>
+
+                <TextBlock x:Name="consequenceTwo"
+                           Text="You must leave one piece of equipment outside."
+                           Foreground="LightGray"/>
+
+                <WrapPanel Margin="0,10,0,0">
+                    <Button x:Name="rerollTwo"
+                            Content="Reroll"
+                            Margin="0,0,5,0"/>
+
+                    <Button x:Name="disableTwo"
+                            Content="Disable"
+                            Margin="0,0,5,0"/>
+
+                    <Button x:Name="deleteTwo"
+                            Content="Delete"/>
+        </WrapPanel>
+
+    </StackPanel>
+
+</GroupBox>
+
 </StackPanel>
 
 
