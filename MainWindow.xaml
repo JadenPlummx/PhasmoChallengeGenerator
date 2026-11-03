@@ -111,6 +111,46 @@
 
 </GroupBox>
 
+
+        <!-- This is Rule 3 unfortunetly being the last rule -->
+        <GroupBox Header="Rule 3"
+                  Foreground="White"
+                  Margin="0,5">
+
+            <StackPanel Margin="10">
+
+                <TextBlock x:Name="timerThree"
+                           Text="15:00"
+                           FontSize="24"
+                           Foreground="White"/>
+
+                <TextBlock x:Name="actionThree"
+                           Text="If someone reaches 0% sanity..."
+                           Foreground="White"
+                           Margin="0,5"/>
+
+                <TextBlock x:Name="consequenceThree"
+                           Text="Everyone must return to the truck."
+                           Foreground="LightGray"/>
+
+                <WrapPanel Margin="0,10,0,0">
+                    <Button x:Name="rerollThree"
+                            Content="Reroll"
+                            Margin="0,0,5,0"/>
+
+                    <Button x:Name="disableThree"
+                            Content="Disable"
+                            Margin="0,0,5,0"/>
+
+                    <Button x:Name="deleteThree"
+                            Content="Delete"/>
+        </WrapPanel>
+
+    </StackPanel>
+
+</GroupBox>
+
+
 </StackPanel>
 
 
