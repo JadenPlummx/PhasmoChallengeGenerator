@@ -151,6 +151,14 @@
 </GroupBox>
 
 
+        <!-- Freeze time button -->
+        <Button x:Name="pauseButton"
+                Content="Pause All Timers"
+                Height="35"
+                Margin="0,15,0,0"/>
+
+
+
 </StackPanel>
 
 
