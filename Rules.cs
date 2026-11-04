@@ -60,5 +60,14 @@ namespace PhasmoChallengeGenerator
                 }
             }
         }
-    }
+        
+        /// <summary>
+        // Consequence property.
+        /// </summary>
+        internal string Consequence
+        {
+    
+        }     
+     }
+
 }
