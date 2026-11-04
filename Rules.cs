@@ -97,5 +97,11 @@ namespace PhasmoChallengeGenerator
                 }
             }
         }
-    }
-}
+        
+        /// <summary>
+        /// This returns the full text of the rule on screen
+        /// </summary>
+        public override string ToString()
+        {
+            return $"{Action}, {Consequence}";     
+        }
