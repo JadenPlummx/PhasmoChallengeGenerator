@@ -29,6 +29,14 @@ namespace PhasmoChallengeGenerator
             consequence = "consequence";
         }
 
+        // Parameteriz constructor.
+        public Rules(int timeInSeconds, string action, string consequence)
+        {
+            time = timeInSeconds;
+            Action = action;
+            Consequence = consequence;
+        }
+
         // Properties.
 
         /// <summary>
