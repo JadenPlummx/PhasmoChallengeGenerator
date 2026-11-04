@@ -62,7 +62,7 @@ namespace PhasmoChallengeGenerator
         }
         
         /// <summary>
-        // Consequence property.
+        /// Consequence property.
         /// </summary>
         internal string Consequence
         {
