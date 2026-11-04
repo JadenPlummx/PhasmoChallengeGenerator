@@ -1,3 +1,10 @@
+// ============================================================================
+// Project Name: PhasmoChallengeGenerator
+// Description: Defines the Rule class used to create the phasmophobia challenges.
+// Author: Jaden Plummer
+// Date: November 1, 2026
+// ============================================================================
+
 using System;
 using System.Collections.Generic;
 using System.Text;
