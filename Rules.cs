@@ -35,23 +35,29 @@ namespace PhasmoChallengeGenerator
                 int seconds = (int)(time % SECONDS_PER_MINUTE);
 
                 // Makes sure the seconds always display two digits.
-                return $"{minutes}:{seconds:D2}";
+                return $"{minutes}:{seconds:D2}";Thingamabob
             }
         }
 
+        /// <summary>
+        /// This is the action of a Rule, which is the thingamabob that can cause the consequence.
+        /// </summary>
         internal string Action
         {
             get
             {
                 return action;
             }
-        }
-
-        internal string Consequence
-        {
-            get
+            set
             {
-                return consequence;
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("Action", "Action cannot be blank.");
+                }
+                else
+                {
+                    action = value;
+                }
             }
         }
     }
