@@ -79,7 +79,7 @@ namespace PhasmoChallengeGenerator
             }
             set
             {
-                if (value == string.Empty)
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentNullException("Consequence", "Consequence cannot be blank.");
                 }
