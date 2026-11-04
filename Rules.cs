@@ -66,8 +66,10 @@ namespace PhasmoChallengeGenerator
         /// </summary>
         internal string Consequence
         {
-    
-        }     
-     }
-
+            get
+            {
+                return consequence;
+            }
+        }
+    }
 }
