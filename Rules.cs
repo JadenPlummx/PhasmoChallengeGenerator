@@ -21,5 +21,38 @@ namespace PhasmoChallengeGenerator
             action = "action";
             consequence = "consequence";
         }
+
+        // Properties.
+
+        /// <summary>
+        /// This returns the remaining time in a readable format.
+        /// </summary>
+        internal string Time
+        {
+            get
+            {
+                int minutes = (int)(time / SECONDS_PER_MINUTE);
+                int seconds = (int)(time % SECONDS_PER_MINUTE);
+
+                // Makes sure the seconds always display two digits.
+                return $"{minutes}:{seconds:D2}";
+            }
+        }
+
+        internal string Action
+        {
+            get
+            {
+                return action;
+            }
+        }
+
+        internal string Consequence
+        {
+            get
+            {
+                return consequence;
+            }
+        }
     }
 }
