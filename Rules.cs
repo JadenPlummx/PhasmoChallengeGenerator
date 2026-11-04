@@ -35,7 +35,7 @@ namespace PhasmoChallengeGenerator
                 int seconds = (int)(time % SECONDS_PER_MINUTE);
 
                 // Makes sure the seconds always display two digits.
-                return $"{minutes}:{seconds:D2}";Thingamabob
+                return $"{minutes}:{seconds:D2}";
             }
         }
 
