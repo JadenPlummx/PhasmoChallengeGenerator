@@ -11,7 +11,7 @@ using System.Text;
 
 namespace PhasmoChallengeGenerator
 {
-    internal class Rule
+    internal class Rules
     {
         // Instance variables.
         int time;
@@ -22,7 +22,7 @@ namespace PhasmoChallengeGenerator
         int DEFAULT_TIME = 900;
 
         // Constructor.
-        public Rule()
+        public Rules()
         {
             time = DEFAULT_TIME;
             action = "action";
