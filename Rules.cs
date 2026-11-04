@@ -70,6 +70,17 @@ namespace PhasmoChallengeGenerator
             {
                 return consequence;
             }
+            set
+            {
+                if (value == string.Empty)
+                {
+                    throw new ArgumentNullException("Consequence", "Consequence cannot be blank.");
+                }
+                else
+                {
+                    consequence = value;
+                }
+            }
         }
     }
 }
