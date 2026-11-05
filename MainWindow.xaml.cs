@@ -26,9 +26,21 @@ namespace PhasmoChallengeGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Stores the possible ghost hunting actions.
+        string[] actionList = {
+
+        };
+
+        // Stores the possible consequences.
+        string[] consequenceList = {
+
+        };
+
+        // Used to randomly select actions and consequences.
+        Random randomInstance = new Random();
+
         public MainWindow()
         {
             InitializeComponent();
         }
     }
-}
