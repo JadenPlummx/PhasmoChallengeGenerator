@@ -136,5 +136,14 @@ namespace PhasmoChallengeGenerator
         {
             return $"{Action}, {Consequence}";     
         }
+
+        // Changes the time once per second.
+        internal void TimerTick()
+        {
+            if (time > 0)
+            {
+                time--;
+            }
+        }
     }
-} 
+}
