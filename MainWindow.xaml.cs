@@ -68,7 +68,7 @@ namespace PhasmoChallengeGenerator
         Random randomInstance = new Random();
 
         // This updates the timers every second.
-        private DispatcherTimer ticker = new DispatcherTimer(
+        private DispatcherTimer ticker = new DispatcherTimer();
         
         public MainWindow()
         {
