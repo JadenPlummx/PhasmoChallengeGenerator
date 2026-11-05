@@ -69,6 +69,9 @@ namespace PhasmoChallengeGenerator
 
         // This updates the timers every second.
         private DispatcherTimer ticker = new DispatcherTimer();
+
+        // Stores the challenges that are currently active.
+        List<Rules> activeRules = new List<Rules>();
         
         public MainWindow()
         {
@@ -76,6 +79,10 @@ namespace PhasmoChallengeGenerator
         }
          private void WindowLoaded(object sender, RoutedEventArgs e)
         {
+
+        activeRules.Add(CreateRandomRule(300));
+        activeRules.Add(CreateRandomRule(600));
+        activeRules.Add(CreateRandomRule(900));
          // Timer ticks every second
             ticker.Interval = TimeSpan.FromSeconds(1);
 
@@ -84,6 +91,17 @@ namespace PhasmoChallengeGenerator
 
         // Start the timer (hopefully the ghosts don't attack you).
             ticker.Start();
+        }
+
+        private Rules CreateRandomRule(int timeInSeconds)
+        {
+            int randomAction = randomInstance.Next(actionList.Length);
+            int randomConsequence = randomInstance.Next(consequenceList.Length);
+
+            return new Rules(
+            timeInSeconds,
+            actionList[randomAction],
+            consequenceList[randomConsequence]);
         }
     }
 }
