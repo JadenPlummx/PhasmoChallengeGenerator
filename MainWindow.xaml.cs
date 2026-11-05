@@ -1,4 +1,11 @@
-﻿using System.Text;
+// ============================================================================
+// Project Name: PhasmoChallengeGenerator
+// Description: Handles the main window and functionality of my Phasmophobia challenge generator.
+// Author: Jaden Plummer
+// Date: November 4, 2026
+// ============================================================================
+
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
