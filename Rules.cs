@@ -65,7 +65,7 @@ namespace PhasmoChallengeGenerator
             }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (!IsValidAction(value))
                 {
                     throw new ArgumentNullException("Action", "Action cannot be blank.");
                 }
@@ -74,8 +74,7 @@ namespace PhasmoChallengeGenerator
                     action = value;
                 }
             }
-        }
-        
+        }     
         /// <summary>
         /// Consequence property.
         /// </summary>
@@ -87,7 +86,7 @@ namespace PhasmoChallengeGenerator
             }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (!IsValidConsequence(value))
                 {
                     throw new ArgumentNullException("Consequence", "Consequence cannot be blank.");
                 }
@@ -96,6 +95,22 @@ namespace PhasmoChallengeGenerator
                     consequence = value;
                 }
             }
+            
+
+        /// <summary>
+        /// Checks if the Action is valid.
+        /// </summary>
+        private bool IsValidAction(string actionToCheck)
+        {
+            return !string.IsNullOrWhiteSpace(actionToCheck);
+        }
+
+        /// <summary>
+        /// Checks if the Consequence is valid.
+        /// </summary>
+        private bool IsValidConsequence(string consequenceToCheck)
+        {
+            return !string.IsNullOrWhiteSpace(consequenceToCheck);
         }
         
         /// <summary>
