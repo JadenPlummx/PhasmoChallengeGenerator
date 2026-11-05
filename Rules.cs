@@ -95,6 +95,7 @@ namespace PhasmoChallengeGenerator
                     consequence = value;
                 }
             }
+        }
             
 
         /// <summary>
@@ -120,3 +121,5 @@ namespace PhasmoChallengeGenerator
         {
             return $"{Action}, {Consequence}";     
         }
+   }
+} 
