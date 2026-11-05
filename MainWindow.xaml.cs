@@ -74,4 +74,16 @@ namespace PhasmoChallengeGenerator
         {
             InitializeComponent();
         }
+         private void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+         // Timer ticks every second
+            ticker.Interval = TimeSpan.FromSeconds(1);
+
+        // Connected the timer along with the second pass method
+            ticker.Tick += SecondPass;
+
+        // Start the timer (hopefully the ghosts don't attack you).
+            ticker.Start();
+        }
     }
+}
