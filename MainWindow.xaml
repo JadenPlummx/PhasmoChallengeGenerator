@@ -10,7 +10,8 @@
         MinHeight="550"
         MinWidth="650"
         Background="#252525"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Loaded="WindowLoaded">
 
 
 <Grid Margin="20">
