@@ -32,9 +32,16 @@ namespace PhasmoChallengeGenerator
         // Parameteriz constructor.
         public Rules(int timeInSeconds, string action, string consequence)
         {
-            time = timeInSeconds;
-            Action = action;
-            Consequence = consequence;
+            if (!IsValidTime(timeInSeconds))
+            {
+                throw new ArgumentOutOfRangeException("Time", "Time must be greater than zero.");
+            }
+            else
+            {
+                time = timeInSeconds;
+                Action = action;
+                Consequence = consequence;
+            }
         }
 
         // Properties.
@@ -75,6 +82,7 @@ namespace PhasmoChallengeGenerator
                 }
             }
         }     
+        
         /// <summary>
         /// Consequence property.
         /// </summary>
@@ -97,7 +105,6 @@ namespace PhasmoChallengeGenerator
             }
         }
             
-
         /// <summary>
         /// Checks if the Action is valid.
         /// </summary>
@@ -115,11 +122,19 @@ namespace PhasmoChallengeGenerator
         }
         
         /// <summary>
+        /// Checks if the Time is valid.
+        /// </summary>
+        private bool IsValidTime(int timeToCheck)
+        {
+            return timeToCheck > 0;
+        }
+        
+        /// <summary>
         /// This returns the full text of the rule on screen
         /// </summary>
         public override string ToString()
         {
             return $"{Action}, {Consequence}";     
         }
-   }
+    }
 } 
