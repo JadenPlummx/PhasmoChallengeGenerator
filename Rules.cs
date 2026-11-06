@@ -13,7 +13,7 @@ namespace PhasmoChallengeGenerator
 {
     internal class Rules
     {
-        // Instance variables.
+        /// Instance variables.
         int time;
         string action;
         string consequence;
@@ -21,7 +21,7 @@ namespace PhasmoChallengeGenerator
         int SECONDS_PER_MINUTE = 60;
         int DEFAULT_TIME = 900;
 
-        // Constructor.
+        /// Constructor.
         public Rules()
         {
             time = DEFAULT_TIME;
@@ -44,7 +44,7 @@ namespace PhasmoChallengeGenerator
             }
         }
 
-        // Properties.
+        /// Properties.
 
         /// <summary>
         /// This returns the remaining time in a readable format.
@@ -137,13 +137,19 @@ namespace PhasmoChallengeGenerator
             return $"{Action}, {Consequence}";     
         }
 
-        // Changes the time once per second.
+        /// Changes the time once per second.
         internal void TimerTick()
         {
             if (time > 0)
             {
                 time--;
             }
+        }
+
+        /// Checks whether the challenge timer has expired.
+        internal bool IsExpired()
+        {
+            return time == 0;
         }
     }
 }
