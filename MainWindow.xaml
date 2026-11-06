@@ -60,17 +60,13 @@
 
             <WrapPanel Margin="0,10,0,0">
                 <Button x:Name="rerollOne"
-                        Content="Reroll"
+                        Content="_First Reroll"
+                        TabIndex="1"
                         Margin="0,0,5,0"
                         ToolTip="Generate a new challenge for Rule 1."
                         Click="RerollOne_Click"/>
 
-                <Button x:Name="disableOne"
-                        Content="Disable"
-                        Margin="0,0,5,0"/>
 
-                <Button x:Name="deleteOne"
-                        Content="Delete"/>
             </WrapPanel>
 
         </StackPanel>
@@ -100,19 +96,12 @@
 
                 <WrapPanel Margin="0,10,0,0">
                 <Button x:Name="rerollTwo"
-                        Content="Reroll"
+                        Content="_Second Reroll"
+                        TabIndex="2"
                         Margin="0,0,5,0"
                         ToolTip="Generate a new challenge for Rule 2."
                         Click="RerollTwo_Click"/>
 
-
-
-                    <Button x:Name="disableTwo"
-                            Content="Disable"
-                            Margin="0,0,5,0"/>
-
-                    <Button x:Name="deleteTwo"
-                            Content="Delete"/>
         </WrapPanel>
 
     </StackPanel>
@@ -143,17 +132,12 @@
 
                 <WrapPanel Margin="0,10,0,0">
                 <Button x:Name="rerollThree"
-                        Content="Reroll"
+                        Content="_Third Reroll"
+                        TabIndex="3"
                         Margin="0,0,5,0"
                         ToolTip="Generate a new challenge for Rule 3."
                         Click="RerollThree_Click"/>
 
-                    <Button x:Name="disableThree"
-                            Content="Disable"
-                            Margin="0,0,5,0"/>
-
-                    <Button x:Name="deleteThree"
-                            Content="Delete"/>
         </WrapPanel>
 
     </StackPanel>
@@ -163,7 +147,8 @@
 
         <!-- Freeze time button -->
         <Button x:Name="pauseButton"
-                Content="Pause All Timers"
+                Content="_Pause All Timers"
+                TabIndex="4"
                 Height="35"
                 Margin="0,15,0,0"
                 Click="PauseButton_Click"
