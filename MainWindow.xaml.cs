@@ -83,6 +83,9 @@ namespace PhasmoChallengeGenerator
         activeRules.Add(CreateRandomRule(300));
         activeRules.Add(CreateRandomRule(600));
         activeRules.Add(CreateRandomRule(900));
+
+        DisplayRules();
+        
          // Timer ticks every second
             ticker.Interval = TimeSpan.FromSeconds(1);
 
@@ -117,6 +120,22 @@ namespace PhasmoChallengeGenerator
 
             // Updates the challenge information shown on screen.
             DisplayRules();
+        }
+
+         // Displays the active challenges on the screen.
+        private void DisplayRules()
+        {
+            timerOne.Text = activeRules[0].Time;
+            actionOne.Text = activeRules[0].Action;
+            consequenceOne.Text = activeRules[0].Consequence;
+
+            timerTwo.Text = activeRules[1].Time;
+            actionTwo.Text = activeRules[1].Action;
+            consequenceTwo.Text = activeRules[1].Consequence;
+
+            timerThree.Text = activeRules[2].Time;
+            actionThree.Text = activeRules[2].Action;
+            consequenceThree.Text = activeRules[2].Consequence;
         }
     }
 }
