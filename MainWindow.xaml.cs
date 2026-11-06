@@ -103,5 +103,20 @@ namespace PhasmoChallengeGenerator
             actionList[randomAction],
             consequenceList[randomConsequence]);
         }
+
+        /// <summary>
+        /// Updates all active challenges every second.
+        /// </summary>
+        private void SecondPass(object sender, EventArgs e)
+        {
+            // Decreases the remaining time for each active challenge.
+            foreach (Rules rule in activeRules)
+            {
+                rule.TimerTick();
+            }
+
+            // Updates the challenge information shown on screen.
+            DisplayRules();
+        }
     }
 }
