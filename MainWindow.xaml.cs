@@ -115,7 +115,7 @@ namespace PhasmoChallengeGenerator
             // Decreases the remaining time for each active challenge.
             for (int i = 0; i < activeRules.Count; i++)
             {
-                
+                activeRules[i].TimerTick();
 
                 // Checks whether the challenge has expired.
                 if (activeRules[i].IsExpired())
