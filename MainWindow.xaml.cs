@@ -28,21 +28,21 @@ namespace PhasmoChallengeGenerator
     {
         // Stores the possible ghost hunting actions.
         string[] actionList = {
-            "Use the Spirit Box to communicate with the ghost.",
-            "Try to get a response from the Ghost Writing Book.",
-            "Take a photo of the ghost.",
-            "Use the EMF Reader to search for activity.",
-            "Find the ghost room without using a thermometer.",
-            "Use the DOTS Projector to look for ghost movement.",
-            "Try to identify the ghost using fingerprints.",
-            "Spend time investigating with only your flashlight.",
-            "Use a Crucifix to protect yourself from a hunt.",
-            "Search for evidence without using the main lights.",
-            "Try to get the ghost to interact with an object.",
-            "Investigate the ghost room without speaking.",
-            "Complete an objective on the optional objectives list.",
-            "Walk backwards for the next 30 seconds.",
-            "Pretend you're a professional ghost hunter for one minute."
+            "If you use the Spirit Box to communicate with the ghost...",
+            "If you try to get a response from the Ghost Writing Book...",
+            "If you take a photo of the ghost...",
+            "If you use the EMF Reader to search for activity...",
+            "If you find the ghost room without using a thermometer...",
+            "If you use the DOTS Projector to look for ghost movement...",
+            "If you try to identify the ghost using fingerprints...",
+            "If you investigate using only your flashlight...",
+            "If you use a Crucifix to protect yourself from a hunt...",
+            "If you search for evidence without using the main lights...",
+            "If you try to get the ghost to interact with an object...",
+            "If you investigate the ghost room without speaking...",
+            "If you complete an optional objective...",
+            "If you walk backwards for the next 30 seconds...",
+            "If you pretend you're a professional ghost hunter for one minute..."
         };
 
         // Stores the possible consequences.
@@ -55,7 +55,7 @@ namespace PhasmoChallengeGenerator
             "You must leave one piece of equipment in the truck.",
             "You cannot turn on any lights for 60 seconds.",
             "You must put away your EMF Reader for 2 minutes.",
-            "You cannot use the thermometer for the next challenge.",
+            "You cannot use the thermometer until the next challenge.",
             "You must stay inside the truck for 30 seconds.",
             "You must complete the next challenge without sprinting.",
             "You cannot use your head-mounted camera for 60 seconds.",
