@@ -156,6 +156,33 @@ namespace PhasmoChallengeGenerator
             }
         }
 
+         /// <summary>
+         /// Generates a new challenge for Rule 1.
+         /// </summary>
+         private void RerollOne_Click(object sender, RoutedEventArgs e)
+         {
+             activeRules[0] = CreateRandomRule(300);
+             DisplayRules();
+         }
+
+ /// <summary>
+ /// Generates a new challenge for Rule 2.
+ /// </summary>
+ private void RerollTwo_Click(object sender, RoutedEventArgs e)
+ {
+     activeRules[1] = CreateRandomRule(600);
+     DisplayRules();
+ }
+
+ /// <summary>
+ /// Generates a new challenge for Rule 3.
+ /// </summary>
+ private void RerollThree_Click(object sender, RoutedEventArgs e)
+ {
+     activeRules[2] = CreateRandomRule(900);
+     DisplayRules();
+ }
+
          // Displays the active challenges on the screen.
         private void DisplayRules()
         {
