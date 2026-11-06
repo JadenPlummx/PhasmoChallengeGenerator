@@ -139,6 +139,23 @@ namespace PhasmoChallengeGenerator
             DisplayRules();
         }
 
+        /// <summary>
+        /// Pauses or resumes all challenge timers.
+        /// </summary>
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ticker.IsEnabled)
+            {
+                ticker.Stop();
+                pauseButton.Content = "Resume All Timers";
+            }
+            else
+            {
+                ticker.Start();
+                pauseButton.Content = "Pause All Timers";
+            }
+        }
+
          // Displays the active challenges on the screen.
         private void DisplayRules()
         {
