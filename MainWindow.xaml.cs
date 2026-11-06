@@ -113,9 +113,26 @@ namespace PhasmoChallengeGenerator
         private void SecondPass(object sender, EventArgs e)
         {
             // Decreases the remaining time for each active challenge.
-            foreach (Rules rule in activeRules)
+            for (int i = 0; i < activeRules.Count; i++)
             {
-                rule.TimerTick();
+                
+
+                // Checks whether the challenge has expired.
+                if (activeRules[i].IsExpired())
+                {
+                    if (i == 0)
+                    {
+                        activeRules[i] = CreateRandomRule(300);
+                    }
+                    else if (i == 1)
+                    {
+                        activeRules[i] = CreateRandomRule(600);
+                    }
+                    else if (i == 2)
+                    {
+                        activeRules[i] = CreateRandomRule(900);
+                    }
+                }
             }
 
             // Updates the challenge information shown on screen.
