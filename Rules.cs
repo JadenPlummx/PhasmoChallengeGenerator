@@ -13,15 +13,15 @@ namespace PhasmoChallengeGenerator
 {
     internal class Rules
     {
-        /// Instance variables.
+        // Instance variables.
         int time;
         string action;
         string consequence;
+        
+        const int SECONDS_PER_MINUTE = 60;
+        const int DEFAULT_TIME = 900;
 
-        int SECONDS_PER_MINUTE = 60;
-        int DEFAULT_TIME = 900;
-
-        /// Constructor.
+        // Constructor.
         public Rules()
         {
             time = DEFAULT_TIME;
@@ -29,22 +29,21 @@ namespace PhasmoChallengeGenerator
             consequence = "consequence";
         }
 
-        // Parameteriz constructor.
+        // Parameterized constructor.
         public Rules(int timeInSeconds, string action, string consequence)
         {
             if (!IsValidTime(timeInSeconds))
             {
-                throw new ArgumentOutOfRangeException("Time", "Time must be greater than zero.");
+                throw new ArgumentOutOfRangeException("timeInSeconds", "Time must be greater than zero.");
             }
-            else
-            {
-                time = timeInSeconds;
-                Action = action;
-                Consequence = consequence;
-            }
+            
+            time = timeInSeconds;
+            Action = action;
+            Consequence = consequence;
+            
         }
 
-        /// Properties.
+        // Properties.
 
         /// <summary>
         /// This returns the remaining time in a readable format.
@@ -74,7 +73,7 @@ namespace PhasmoChallengeGenerator
             {
                 if (!IsValidAction(value))
                 {
-                    throw new ArgumentNullException("Action", "Action cannot be blank.");
+                    throw new ArgumentException("Action cannot be blank.");
                 }
                 else
                 {
@@ -96,7 +95,7 @@ namespace PhasmoChallengeGenerator
             {
                 if (!IsValidConsequence(value))
                 {
-                    throw new ArgumentNullException("Consequence", "Consequence cannot be blank.");
+                    throw new ArgumentException("Consequence cannot be blank.");
                 }
                 else
                 {
@@ -137,7 +136,7 @@ namespace PhasmoChallengeGenerator
             return $"{Action}, {Consequence}";     
         }
 
-        /// Changes the time once per second.
+        // Changes the time once per second.
         internal void TimerTick()
         {
             if (time > 0)
@@ -146,7 +145,7 @@ namespace PhasmoChallengeGenerator
             }
         }
 
-        /// Checks whether the challenge timer has expired.
+        // Checks whether the challenge timer has expired.
         internal bool IsExpired()
         {
             return time == 0;
