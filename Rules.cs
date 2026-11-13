@@ -14,9 +14,9 @@ namespace PhasmoChallengeGenerator
     internal class Rules
     {
         // Instance variables.
-        int time;
-        string action;
-        string consequence;
+        private int time;
+        private string action;
+        private string consequence;
         
         const int SECONDS_PER_MINUTE = 60;
         const int DEFAULT_TIME = 900;
