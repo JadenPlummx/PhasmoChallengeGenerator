@@ -67,6 +67,66 @@ namespace PhasmoChallengeGenerator
             }
         }
 
+        /// <summary>
+        /// This returns the Hunter Rank based on the severity level.
+        /// </summary>
+        public string HunterRank
+        {
+            get
+            {
+                if (SeverityLevel <= 2)
+                {
+                    return "Rookie Hunter";
+                }
+                else if (SeverityLevel <= 4)
+                {
+                    return "Amateur Hunter";
+                }
+                else if (SeverityLevel <= 6)
+                {
+                    return "Professional Hunter";
+                }
+                else if (SeverityLevel <= 8)
+                {
+                    return "Expert Hunter";
+                }
+                else
+                {
+                    return "Master Hunter";
+                }
+            }
+        }
+
+        /// <summary>
+        /// This returns the image that matches the Hunters Rank.
+        /// </summary>
+        public string RankImage
+        {
+            get
+            {
+                if (SeverityLevel <= 2)
+                {
+                    return "pack://application:,,,/Images/Level1.jpg";
+                }
+                else if (SeverityLevel <= 4)
+                {
+                    return "pack://application:,,,/Images/Level2.jpg";
+                }
+                else if (SeverityLevel <= 6)
+                {
+                    return "pack://application:,,,/Images/Level3.jpg";
+                }
+                else if (SeverityLevel <= 8)
+                {
+                    return "pack://application:,,,/Images/Level4.jpg";
+                }
+                else
+                {
+                    return "pack://application:,,,/Images/Level5.jpg";
+                }
+            }
+        }
+
         // Constructor.
         public SeverityRules(int timeInSeconds, string action, string consequence,
             int actionDifficulty, int consequenceImpact)
