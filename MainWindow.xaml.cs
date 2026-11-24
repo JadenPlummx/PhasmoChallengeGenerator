@@ -64,6 +64,22 @@ namespace PhasmoChallengeGenerator
             "You must apologize to the ghost before your next investigation."
         };
 
+        // Stores how difficult each action is to complete (1-10).
+        // The ratings match the actions in actionList by their position.
+        int[] actionDifficultyList = {
+            5, 4, 7, 3, 6,
+            5, 4, 6, 5, 7,
+            4, 6, 5, 3, 2
+        };
+
+        // Stores how much each consequence affects the investigation (1-10).
+        // The ratings match the consequences in consequenceList by their position.
+        int[] consequenceImpactList = {
+            4, 3, 5, 7, 8,
+            5, 6, 4, 6, 3,
+            7, 4, 2, 2, 2
+        };
+
         // Used to randomly select actions and consequences.
         Random randomInstance = new Random();
 
@@ -72,7 +88,7 @@ namespace PhasmoChallengeGenerator
 
         // Stores the challenges that are currently active.
         List<Rules> activeRules = new List<Rules>();
-        
+
         public MainWindow()
         {
             InitializeComponent();
