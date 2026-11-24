@@ -106,7 +106,7 @@ namespace PhasmoChallengeGenerator
             {
                 if (SeverityLevel <= 2)
                 {
-                    return "pack://application:,,,/Images/Level1.jpg";
+                    return "pack://application:,,,/Images/Rank1.jpg";
                 }
                 else if (SeverityLevel <= 4)
                 {
