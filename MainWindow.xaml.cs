@@ -89,26 +89,29 @@ namespace PhasmoChallengeGenerator
         // Stores the challenges that are currently active.
         List<Rules> activeRules = new List<Rules>();
 
+        // This Keeps track of which challenge mode is currently selected.
+        bool severityModeEnabled = false;
+
         public MainWindow()
         {
             InitializeComponent();
         }
-         private void WindowLoaded(object sender, RoutedEventArgs e)
+        private void WindowLoaded(object sender, RoutedEventArgs e)
         {
 
-        activeRules.Add(CreateRandomRule(300));
-        activeRules.Add(CreateRandomRule(600));
-        activeRules.Add(CreateRandomRule(900));
+            activeRules.Add(CreateRandomRule(300));
+            activeRules.Add(CreateRandomRule(600));
+            activeRules.Add(CreateRandomRule(900));
 
-        DisplayRules();
-        
-         // Timer ticks every second
+            DisplayRules();
+
+            // Timer ticks every second
             ticker.Interval = TimeSpan.FromSeconds(1);
 
-        // Connected the timer along with the second pass method
+            // Connected the timer along with the second pass method
             ticker.Tick += SecondPass;
 
-        // Start the timer (hopefully the ghosts don't attack you).
+            // Start the timer (hopefully the ghosts don't attack you).
             ticker.Start();
         }
 
@@ -117,10 +120,22 @@ namespace PhasmoChallengeGenerator
             int randomAction = randomInstance.Next(actionList.Length);
             int randomConsequence = randomInstance.Next(consequenceList.Length);
 
-            return new Rules(
-            timeInSeconds,
-            actionList[randomAction],
-            consequenceList[randomConsequence]);
+            // Creates a severity challenge if Severity Mode is selected.
+            if (severityModeEnabled)
+            {
+                return new SeverityRules(
+                    timeInSeconds,
+                    actionList[randomAction],
+                    consequenceList[randomConsequence],
+                    actionDifficultyList[randomAction],
+                    consequenceImpactList[randomConsequence]);
+            }
+
+            // Otherwise, creates a regular challenge.
+            return new StandardRules(
+                timeInSeconds,
+                actionList[randomAction],
+                consequenceList[randomConsequence]);
         }
 
         /// <summary>
@@ -172,34 +187,62 @@ namespace PhasmoChallengeGenerator
             }
         }
 
-         /// <summary>
-         /// Generates a new challenge for Rule 1.
-         /// </summary>
-         private void RerollOne_Click(object sender, RoutedEventArgs e)
-         {
-             activeRules[0] = CreateRandomRule(300);
-             DisplayRules();
-         }
+        /// <summary>
+        /// Switches the challenges back to Standard Mode.
+        /// </summary>
+        private void StandardModeButton_Click(object sender, RoutedEventArgs e)
+        {
+            severityModeEnabled = false;
 
- /// <summary>
- /// Generates a new challenge for Rule 2.
- /// </summary>
- private void RerollTwo_Click(object sender, RoutedEventArgs e)
- {
-     activeRules[1] = CreateRandomRule(600);
-     DisplayRules();
- }
+            activeRules[0] = CreateRandomRule(300);
+            activeRules[1] = CreateRandomRule(600);
+            activeRules[2] = CreateRandomRule(900);
 
- /// <summary>
- /// Generates a new challenge for Rule 3.
- /// </summary>
- private void RerollThree_Click(object sender, RoutedEventArgs e)
- {
-     activeRules[2] = CreateRandomRule(900);
-     DisplayRules();
- }
+            DisplayRules();
+        }
 
-         // Displays the active challenges on the screen.
+        /// <summary>
+        /// Switches the challenges to Severity Mode.
+        /// </summary>
+        private void SeverityModeButton_Click(object sender, RoutedEventArgs e)
+        {
+            severityModeEnabled = true;
+
+            activeRules[0] = CreateRandomRule(300);
+            activeRules[1] = CreateRandomRule(600);
+            activeRules[2] = CreateRandomRule(900);
+
+            DisplayRules();
+        }
+
+        /// <summary>
+        /// Generates a new challenge for Rule 1.
+        /// </summary>
+        private void RerollOne_Click(object sender, RoutedEventArgs e)
+        {
+            activeRules[0] = CreateRandomRule(300);
+            DisplayRules();
+        }
+
+        /// <summary>
+        /// Generates a new challenge for Rule 2.
+        /// </summary>
+        private void RerollTwo_Click(object sender, RoutedEventArgs e)
+        {
+            activeRules[1] = CreateRandomRule(600);
+            DisplayRules();
+        }
+
+        /// <summary>
+        /// Generates a new challenge for Rule 3.
+        /// </summary>
+        private void RerollThree_Click(object sender, RoutedEventArgs e)
+        {
+            activeRules[2] = CreateRandomRule(900);
+            DisplayRules();
+        }
+
+        // Displays the active challenges on the screen.
         private void DisplayRules()
         {
             timerOne.Text = activeRules[0].Time;
