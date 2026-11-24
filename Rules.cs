@@ -2,7 +2,7 @@
 // Project Name: PhasmoChallengeGenerator
 // Description: Defines the Rule class used to create the phasmophobia challenges.
 // Author: Jaden Plummer
-// Date: November 1, 2026
+// Date: November 21, 2026
 // ============================================================================
 
 using System;
@@ -11,49 +11,29 @@ using System.Text;
 
 namespace PhasmoChallengeGenerator
 {
-    internal class Rules
+    internal abstract class Rules
     {
         // Instance variables.
-        private int time;
-        private string action;
-        private string consequence;
-        
-        const int SECONDS_PER_MINUTE = 60;
-        const int DEFAULT_TIME = 900;
+        protected int time;
+        protected string action;
+        protected string consequence;
+        protected static int ruleCount = 0;
 
-        // Constructor.
-        public Rules()
-        {
-            time = DEFAULT_TIME;
-            action = "action";
-            consequence = "consequence";
-        }
-
-        // Parameterized constructor.
-        public Rules(int timeInSeconds, string action, string consequence)
-        {
-            if (!IsValidTime(timeInSeconds))
-            {
-                throw new ArgumentOutOfRangeException("timeInSeconds", "Time must be greater than zero.");
-            }
-            
-            time = timeInSeconds;
-            Action = action;
-            Consequence = consequence;
-            
-        }
+        // Constants.
+        protected const int SECONDS_PER_MINUTE = 60;
+        public const int DefaultTime = 900;
 
         // Properties.
 
         /// <summary>
         /// This returns the remaining time in a readable format.
         /// </summary>
-        internal string Time
+        public string Time
         {
             get
             {
-                int minutes = (int)(time / SECONDS_PER_MINUTE);
-                int seconds = (int)(time % SECONDS_PER_MINUTE);
+                int minutes = time / SECONDS_PER_MINUTE;
+                int seconds = time % SECONDS_PER_MINUTE;
 
                 // Makes sure the seconds always display two digits.
                 return $"{minutes}:{seconds:D2}";
@@ -61,9 +41,20 @@ namespace PhasmoChallengeGenerator
         }
 
         /// <summary>
-        /// This is the action of a Rule, which is the thingamabob that can cause the consequence.
+        /// This returns the remaining time in seconds.
         /// </summary>
-        internal string Action
+        public int SecondsRemaining
+        {
+            get
+            {
+                return time;
+            }
+        }
+
+        /// <summary>
+        /// This gets or sets the action for the rule.
+        /// </summary>
+        public string Action
         {
             get
             {
@@ -71,21 +62,19 @@ namespace PhasmoChallengeGenerator
             }
             set
             {
-                if (!IsValidAction(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Action cannot be blank.");
+                    throw new InvalidRuleException("Action cannot be blank.");
                 }
-                else
-                {
-                    action = value;
-                }
+
+                action = value;
             }
-        }     
-        
+        }
+
         /// <summary>
-        /// Consequence property.
+        /// This gets or sets the consequence for the rule.
         /// </summary>
-        internal string Consequence
+        public string Consequence
         {
             get
             {
@@ -93,60 +82,69 @@ namespace PhasmoChallengeGenerator
             }
             set
             {
-                if (!IsValidConsequence(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Consequence cannot be blank.");
+                    throw new InvalidRuleException("Consequence cannot be blank.");
                 }
-                else
-                {
-                    consequence = value;
-                }
+
+                consequence = value;
             }
-        }
-            
-        /// <summary>
-        /// Checks if the Action is valid.
-        /// </summary>
-        private bool IsValidAction(string actionToCheck)
-        {
-            return !string.IsNullOrWhiteSpace(actionToCheck);
         }
 
         /// <summary>
-        /// Checks if the Consequence is valid.
+        /// This checks whether the rule is currently disabled.
         /// </summary>
-        private bool IsValidConsequence(string consequenceToCheck)
-        {
-            return !string.IsNullOrWhiteSpace(consequenceToCheck);
-        }
-        
+        public bool IsDisabled { get; set; }
+
         /// <summary>
-        /// Checks if the Time is valid.
+        /// This returns the total number of rules created.
         /// </summary>
-        private bool IsValidTime(int timeToCheck)
+        public static int Count
         {
-            return timeToCheck > 0;
+            get
+            {
+                return ruleCount;
+            }
         }
-        
+
+        // Constructor.
+        public Rules(int timeInSeconds, string action, string consequence)
+        {
+            if (timeInSeconds <= 0)
+            {
+                throw new InvalidRuleException("Time must be greater than zero.");
+            }
+
+            // Set the values using the properties.
+            Action = action;
+            Consequence = consequence;
+            time = timeInSeconds;
+
+            IsDisabled = false;
+
+            // Keeps track of how many rule objects have been created.
+            ruleCount++;
+        }
+
         /// <summary>
-        /// This returns the full text of the rule on screen
+        /// This returns the full text of the rule on screen.
         /// </summary>
         public override string ToString()
         {
-            return $"{Action}, {Consequence}";     
+            return $"{Action}, {Consequence}";
         }
 
         // Changes the time once per second.
-        internal void TimerTick()
+        public void TimerTick()
         {
-            if (time > 0)
+            if (time > 0 && !IsDisabled)
             {
                 time--;
             }
         }
 
         // Checks whether the challenge timer has expired.
-        internal bool IsExpired()
+        public bool IsExpired()
         {
             return time == 0;
         }
