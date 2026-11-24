@@ -1,167 +1,334 @@
-﻿<Window x:Class="PhasmoChallengeGenerator.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PhasmoChallengeGenerator"
-        mc:Ignorable="d"
-        Height="600"
-        Width="800"
-        MinHeight="550"
-        MinWidth="650"
-        Background="#252525"
-        WindowStartupLocation="CenterScreen"
-        Loaded="WindowLoaded">
+    <Window x:Class="PhasmoChallengeGenerator.MainWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:PhasmoChallengeGenerator"
+            mc:Ignorable="d"
+            Height="600"
+            Width="800"
+            MinHeight="550"
+            MinWidth="650"
+            Background="#252525"
+            WindowStartupLocation="CenterScreen"
+            Loaded="WindowLoaded">
 
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-<Grid Margin="20">
-    <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
-
-    <!-- Application Title -->
-    <TextBlock Text="Phasmophobia Challenges"
-               FontSize="24"
-               FontWeight="Bold"
-               Foreground="White"
-               HorizontalAlignment="Center"
-               Margin="0,0,0,20"/>
-
-    <!-- Ghost Hunting Rules (hopefully you survive) -->
-    <!-- I made this a have a scroll bar incase I wanted to add more in the future -->
-
-    <ScrollViewer Grid.Row="1"
-                  VerticalScrollBarVisibility="Auto">
-
-
-<StackPanel>
-
-    <!-- This is Rule 1 -->
-    <GroupBox Header="Rule 1"
-              Foreground="White"
-              Margin="0,5">
-
-        <StackPanel Margin="10">
-
-            <TextBlock x:Name="timerOne"
-                       Text="05:00"
+            <!-- Application Title -->
+            <TextBlock Text="Phasmophobia Challenges"
                        FontSize="24"
-                       Foreground="White"/>
-
-            <TextBlock x:Name="actionOne"
-                       Text="If the ghost starts hunting..."
+                       FontWeight="Bold"
                        Foreground="White"
-                       Margin="0,5"/>
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,15"/>
 
-            <TextBlock x:Name="consequenceOne"
-                       Text="You cannot use your flashlight for 2 minutes."
-                       Foreground="LightGray"/>
+            <!-- Choose which type of challenges you want to deal with -->
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,15">
 
-            <WrapPanel Margin="0,10,0,0">
-                <Button x:Name="rerollOne"
-                        Content="_First Reroll"
-                        TabIndex="1"
-                        Margin="0,0,5,0"
-                        ToolTip="Generate a new challenge for Rule 1."
-                        Click="RerollOne_Click"/>
+                <Button x:Name="standardModeButton"
+                        Content="_Standard Mode"
+                        Width="150"
+                        Height="35"
+                        Margin="5,0"
+                        ToolTip="Play the regular timed challenges."
+                        Click="StandardModeButton_Click"/>
 
+                <Button x:Name="severityModeButton"
+                        Content="_Severity Mode"
+                        Width="150"
+                        Height="35"
+                        Margin="5,0"
+                        ToolTip="Play challenges with different difficulty levels."
+                        Click="SeverityModeButton_Click"/>
 
-            </WrapPanel>
+            </StackPanel>
 
-        </StackPanel>
+            <!-- Ghost Hunting Rules (hopefully you survive) -->
+            <!-- I made this a have a scroll bar incase I wanted to add more in the future -->
 
-    </GroupBox>
+            <ScrollViewer Grid.Row="2"
+                          VerticalScrollBarVisibility="Auto">
 
-        <!-- This is Rule 2 -->
-        <GroupBox Header="Rule 2"
-                  Foreground="White"
-                  Margin="0,5">
-        
-            <StackPanel Margin="10">
-        
-                <TextBlock x:Name="timerTwo"
-                           Text="10:00"
-                           FontSize="24"
-                           Foreground="White"/>
+                <StackPanel>
 
-                <TextBlock x:Name="actionTwo"
-                           Text="If you enter the ghost room..."
-                           Foreground="White"
-                           Margin="0,5"/>
+                    <!-- This is Rule 1 -->
+                    <GroupBox Header="Rule 1"
+                              Foreground="White"
+                              Margin="0,5">
 
-                <TextBlock x:Name="consequenceTwo"
-                           Text="You must leave one piece of equipment outside."
-                           Foreground="LightGray"/>
+                        <StackPanel Margin="10">
 
-                <WrapPanel Margin="0,10,0,0">
-                <Button x:Name="rerollTwo"
-                        Content="_Second Reroll"
-                        TabIndex="2"
-                        Margin="0,0,5,0"
-                        ToolTip="Generate a new challenge for Rule 2."
-                        Click="RerollTwo_Click"/>
+                            <TextBlock x:Name="timerOne"
+                                       Text="05:00"
+                                       FontSize="24"
+                                       Foreground="White" HorizontalAlignment="Right"/>
 
-        </WrapPanel>
+                            <Grid Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-    </StackPanel>
+                                <!-- Standard mode gets a ghost, severity mode gets a rank icon -->
+                                <Border Grid.Column="0"
+                                        Width="68"
+                                        Height="68"
+                                        CornerRadius="8"
+                                        Background="#353535"
+                                        VerticalAlignment="Center">
 
-</GroupBox>
+                                    <Grid>
+                                        <TextBlock x:Name="standardIconOne"
+                                                   Text="👻"
+                                                   FontSize="32"
+                                                   FontFamily="Segoe UI Emoji"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
 
+                                        <Image x:Name="rankImageOne"
+                                               Stretch="Uniform"
+                                               Margin="5"
+                                               Visibility="Collapsed"/>
+                                    </Grid>
+                                </Border>
 
-        <!-- This is Rule 3 unfortunetly being the last rule -->
-        <GroupBox Header="Rule 3"
-                  Foreground="White"
-                  Margin="0,5">
+                                <StackPanel Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            Margin="5,0,0,0">
 
-            <StackPanel Margin="10">
+                                    <TextBlock x:Name="actionOne"
+                                               Text="If the ghost starts hunting..."
+                                               Foreground="White"
+                                               Margin="0,0,0,5"/>
 
-                <TextBlock x:Name="timerThree"
-                           Text="15:00"
-                           FontSize="24"
-                           Foreground="White"/>
+                                    <TextBlock x:Name="consequenceOne"
+                                               Text="You cannot use your flashlight for 2 minutes."
+                                               Foreground="LightGray"/>
 
-                <TextBlock x:Name="actionThree"
-                           Text="If someone reaches 0% sanity..."
-                           Foreground="White"
-                           Margin="0,5"/>
+                                    <StackPanel x:Name="severityDisplayOne"
+                                                Visibility="Collapsed"
+                                                Margin="0,8,0,0">
 
-                <TextBlock x:Name="consequenceThree"
-                           Text="Everyone must return to the truck."
-                           Foreground="LightGray"/>
+                                        <TextBlock x:Name="rankNameOne"
+                                                   Text="Rookie Hunter"
+                                                   Foreground="LightGreen"
+                                                   FontWeight="Bold"/>
 
-                <WrapPanel Margin="0,10,0,0">
-                <Button x:Name="rerollThree"
-                        Content="_Third Reroll"
-                        TabIndex="3"
-                        Margin="0,0,5,0"
-                        ToolTip="Generate a new challenge for Rule 3."
-                        Click="RerollThree_Click"/>
+                                        <TextBlock x:Name="severityScoreOne"
+                                                   Text="Severity: 1/10"
+                                                   Foreground="LightGray"
+                                                   FontSize="12"/>
 
-        </WrapPanel>
+                                    </StackPanel>
 
-    </StackPanel>
+                                </StackPanel>
+                            </Grid>
 
-</GroupBox>
+                            <WrapPanel Margin="0,10,0,0">
+                                <Button x:Name="rerollOne"
+                                        Content="_First Reroll"
+                                        TabIndex="1"
+                                        Margin="0,0,5,0"
+                                        ToolTip="Generate a new challenge for Rule 1."
+                                        Click="RerollOne_Click"/>
+                            </WrapPanel>
 
+                        </StackPanel>
 
-        <!-- Freeze time button -->
-        <Button x:Name="pauseButton"
-                Content="_Pause All Timers"
-                TabIndex="4"
-                Height="35"
-                Margin="0,15,0,0"
-                Click="PauseButton_Click"
-                ToolTip="Pause or resume all active challenge timers."/>
+                    </GroupBox>
 
+                    <!-- This is Rule 2 -->
+                    <GroupBox Header="Rule 2"
+                              Foreground="White"
+                              Margin="0,5">
 
-</StackPanel>
+                        <StackPanel Margin="10">
 
+                            <TextBlock x:Name="timerTwo"
+                                       Text="10:00"
+                                       FontSize="24"
+                                       Foreground="White" HorizontalAlignment="Right"/>
 
-    </ScrollViewer>
+                            <Grid Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-</Grid>
+                                <Border Grid.Column="0"
+                                        Width="68"
+                                        Height="68"
+                                        CornerRadius="8"
+                                        Background="#353535"
+                                        VerticalAlignment="Center">
 
-</Window>
+                                    <Grid>
+                                        <TextBlock x:Name="standardIconTwo"
+                                                   Text="👻"
+                                                   FontSize="32"
+                                                   FontFamily="Segoe UI Emoji"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
 
-    
+                                        <Image x:Name="rankImageTwo"
+                                               Stretch="Uniform"
+                                               Margin="5"
+                                               Visibility="Collapsed"/>
+                                    </Grid>
+                                </Border>
+
+                                <StackPanel Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            Margin="5,0,0,0">
+
+                                    <TextBlock x:Name="actionTwo"
+                                               Text="If you enter the ghost room..."
+                                               Foreground="White"
+                                               Margin="0,0,0,5"/>
+
+                                    <TextBlock x:Name="consequenceTwo"
+                                               Text="You must leave one piece of equipment outside."
+                                               Foreground="LightGray"/>
+
+                                    <StackPanel x:Name="severityDisplayTwo"
+                                                Visibility="Collapsed"
+                                                Margin="0,8,0,0">
+
+                                        <TextBlock x:Name="rankNameTwo"
+                                                   Text="Amateur Hunter"
+                                                   Foreground="LightGreen"
+                                                   FontWeight="Bold"/>
+
+                                        <TextBlock x:Name="severityScoreTwo"
+                                                   Text="Severity: 3/10"
+                                                   Foreground="LightGray"
+                                                   FontSize="12"/>
+
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </Grid>
+
+                            <WrapPanel Margin="0,10,0,0">
+                                <Button x:Name="rerollTwo"
+                                        Content="_Second Reroll"
+                                        TabIndex="2"
+                                        Margin="0,0,5,0"
+                                        ToolTip="Generate a new challenge for Rule 2."
+                                        Click="RerollTwo_Click"/>
+                            </WrapPanel>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <!-- This is Rule 3 unfortunetly being the last rule -->
+                    <GroupBox Header="Rule 3"
+                              Foreground="White"
+                              Margin="0,5">
+
+                        <StackPanel Margin="10">
+
+                            <TextBlock x:Name="timerThree"
+                                       Text="15:00"
+                                       FontSize="24"
+                                       Foreground="White" HorizontalAlignment="Right"/>
+
+                            <Grid Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0"
+                                        Width="68"
+                                        Height="68"
+                                        CornerRadius="8"
+                                        Background="#353535"
+                                        VerticalAlignment="Center">
+
+                                    <Grid>
+                                        <TextBlock x:Name="standardIconThree"
+                                                   Text="👻"
+                                                   FontSize="32"
+                                                   FontFamily="Segoe UI Emoji"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+
+                                        <Image x:Name="rankImageThree"
+                                               Stretch="Uniform"
+                                               Margin="5"
+                                               Visibility="Collapsed"/>
+                                    </Grid>
+                                </Border>
+
+                                <StackPanel Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            Margin="5,0,0,0">
+
+                                    <TextBlock x:Name="actionThree"
+                                               Text="If someone reaches 0% sanity..."
+                                               Foreground="White"
+                                               Margin="0,0,0,5"/>
+
+                                    <TextBlock x:Name="consequenceThree"
+                                               Text="Everyone must return to the truck."
+                                               Foreground="LightGray"/>
+
+                                    <StackPanel x:Name="severityDisplayThree"
+                                                Visibility="Collapsed"
+                                                Margin="0,8,0,0">
+
+                                        <TextBlock x:Name="rankNameThree"
+                                                   Text="Master Hunter"
+                                                   Foreground="LightGreen"
+                                                   FontWeight="Bold"/>
+
+                                        <TextBlock x:Name="severityScoreThree"
+                                                   Text="Severity: 10/10"
+                                                   Foreground="LightGray"
+                                                   FontSize="12"/>
+
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </Grid>
+
+                            <WrapPanel Margin="0,10,0,0">
+                                <Button x:Name="rerollThree"
+                                        Content="_Third Reroll"
+                                        TabIndex="3"
+                                        Margin="0,0,5,0"
+                                        ToolTip="Generate a new challenge for Rule 3."
+                                        Click="RerollThree_Click"/>
+                            </WrapPanel>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <!-- Freeze time button -->
+                    <Button x:Name="pauseButton"
+                            Content="_Pause All Timers"
+                            TabIndex="4"
+                            Height="35"
+                            Margin="0,15,0,0"
+                            Click="PauseButton_Click"
+                            ToolTip="Pause or resume all active challenge timers."/>
+
+                </StackPanel>
+
+            </ScrollViewer>
+
+        </Grid>
+
+    </Window>
