@@ -113,6 +113,7 @@ namespace PhasmoChallengeGenerator
 
             // Start the timer (hopefully the ghosts don't attack you).
             ticker.Start();
+            UpdateModeButtons();
         }
 
         private Rules CreateRandomRule(int timeInSeconds)
@@ -192,6 +193,12 @@ namespace PhasmoChallengeGenerator
         /// </summary>
         private void StandardModeButton_Click(object sender, RoutedEventArgs e)
         {
+            // Prevents resetting the challenges if Standard Mode is already selected.
+            if (!severityModeEnabled)
+            {
+                return;
+            }
+
             severityModeEnabled = false;
 
             activeRules[0] = CreateRandomRule(300);
@@ -199,13 +206,42 @@ namespace PhasmoChallengeGenerator
             activeRules[2] = CreateRandomRule(900);
 
             DisplayRules();
+            UpdateModeButtons();
         }
+
+
+        /// <summary>
+        /// This Updates the appearance of the mode buttons so you can tell whats selected.
+        /// </summary>
+        private void UpdateModeButtons()
+        {
+            if (severityModeEnabled)
+            {
+                severityModeButton.Background = Brushes.DodgerBlue;
+                standardModeButton.Background = Brushes.DimGray;
+            }
+            else
+            {
+                standardModeButton.Background = Brushes.DodgerBlue;
+                severityModeButton.Background = Brushes.DimGray;
+            }
+
+            standardModeButton.Foreground = Brushes.White;
+            severityModeButton.Foreground = Brushes.White;
+        }
+
 
         /// <summary>
         /// Switches the challenges to Severity Mode.
         /// </summary>
         private void SeverityModeButton_Click(object sender, RoutedEventArgs e)
         {
+            // Prevents resetting the challenges if Severity Mode is already selected.
+            if (severityModeEnabled)
+            {
+                return;
+            }
+
             severityModeEnabled = true;
 
             activeRules[0] = CreateRandomRule(300);
@@ -213,6 +249,7 @@ namespace PhasmoChallengeGenerator
             activeRules[2] = CreateRandomRule(900);
 
             DisplayRules();
+            UpdateModeButtons();
         }
 
         /// <summary>
@@ -242,6 +279,7 @@ namespace PhasmoChallengeGenerator
             DisplayRules();
         }
 
+
         // Displays the active challenges on the screen.
         private void DisplayRules()
         {
@@ -256,6 +294,80 @@ namespace PhasmoChallengeGenerator
             timerThree.Text = activeRules[2].Time;
             actionThree.Text = activeRules[2].Action;
             consequenceThree.Text = activeRules[2].Consequence;
+
+            // Changes the displayed icons and information based on the selected mode.
+            if (severityModeEnabled)
+            {
+                // Hide the regular ghost icons.
+                standardIconOne.Visibility = Visibility.Collapsed;
+                standardIconTwo.Visibility = Visibility.Collapsed;
+                standardIconThree.Visibility = Visibility.Collapsed;
+
+                // Show the severity information.
+                rankImageOne.Visibility = Visibility.Visible;
+                rankImageTwo.Visibility = Visibility.Visible;
+                rankImageThree.Visibility = Visibility.Visible;
+
+                severityDisplayOne.Visibility = Visibility.Visible;
+                severityDisplayTwo.Visibility = Visibility.Visible;
+                severityDisplayThree.Visibility = Visibility.Visible;
+
+                // Updates the rank information for each challenge.
+                DisplaySeverity((SeverityRules)activeRules[0], rankImageOne, rankNameOne, severityScoreOne);
+                DisplaySeverity((SeverityRules)activeRules[1], rankImageTwo, rankNameTwo, severityScoreTwo);
+                DisplaySeverity((SeverityRules)activeRules[2], rankImageThree, rankNameThree, severityScoreThree);
+            }
+            else
+            {
+                // Show the regular ghost icons.
+                standardIconOne.Visibility = Visibility.Visible;
+                standardIconTwo.Visibility = Visibility.Visible;
+                standardIconThree.Visibility = Visibility.Visible;
+
+                // Hide the severity information.
+                rankImageOne.Visibility = Visibility.Collapsed;
+                rankImageTwo.Visibility = Visibility.Collapsed;
+                rankImageThree.Visibility = Visibility.Collapsed;
+
+                severityDisplayOne.Visibility = Visibility.Collapsed;
+                severityDisplayTwo.Visibility = Visibility.Collapsed;
+                severityDisplayThree.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        // Displays the appropriate hunter rank and image for a severity challenge.
+        private void DisplaySeverity(SeverityRules rule, Image rankImage, TextBlock rankName, TextBlock severityScore)
+        {
+            int severity = rule.SeverityLevel;
+
+            if (severity <= 2)
+            {
+                rankName.Text = "Rookie Hunter";
+                rankImage.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Level1.jpg"));
+            }
+            else if (severity <= 4)
+            {
+                rankName.Text = "Amateur Hunter";
+                rankImage.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Level2.jpg"));
+            }
+            else if (severity <= 6)
+            {
+                rankName.Text = "Professional Hunter";
+                rankImage.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Level3.jpg"));
+            }
+            else if (severity <= 8)
+            {
+                rankName.Text = "Expert Hunter";
+                rankImage.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Level4.jpg"));
+            }
+            else
+            {
+                rankName.Text = "Master Hunter";
+                rankImage.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Level5.jpg"));
+            }
+
+            // Displays the numerical severity level.
+            severityScore.Text = $"Severity: {severity}/10";
         }
     }
 }
