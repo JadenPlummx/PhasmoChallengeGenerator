@@ -76,7 +76,7 @@
             <!-- Ghost Hunting Rules (hopefully you survive) -->
             <!-- I made this a have a scroll bar incase I wanted to add more in the future -->
 
-            <ScrollViewer Grid.Row="3
+            <ScrollViewer Grid.Row="3"
                           VerticalScrollBarVisibility="Auto">
 
                 <StackPanel>
