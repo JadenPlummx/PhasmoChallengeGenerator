@@ -89,7 +89,10 @@ namespace PhasmoChallengeGenerator
         // Stores the challenges that are currently active.
         List<Rules> activeRules = new List<Rules>();
 
-        // This Keeps track of which challenge mode is currently selected.
+        // I spent 40 minutes trying to figure out why the completed challanges weren't showing up on the screen. I forgot to add this variable to keep track of how many challenges have been completed. :(
+        private int completedRuleCount = 0;
+
+        // This Keeps track of which challenge mode is currently selected. 
         bool severityModeEnabled = false;
 
         public MainWindow()
