@@ -152,6 +152,8 @@ namespace PhasmoChallengeGenerator
                 // Checks whether the challenge has expired.
                 if (activeRules[i].IsExpired())
                 {
+                    completedRuleCount++;
+                
                     if (i == 0)
                     {
                         activeRules[i] = CreateRandomRule(300);
@@ -333,6 +335,16 @@ namespace PhasmoChallengeGenerator
                 severityDisplayTwo.Visibility = Visibility.Collapsed;
                 severityDisplayThree.Visibility = Visibility.Collapsed;
             }
+            
+            UpdateRuleCounts();
+        }
+
+        
+        // Updates the number of active and completed challenges shown on screen.
+        private void UpdateRuleCounts()
+        {
+            activeRuleCountText.Text = $"Active Challenges: {activeRules.Count}";
+            completedRuleCountText.Text = $"Completed Challenges: {completedRuleCount}";
         }
 
         // Displays the appropriate hunter rank and image for a severity challenge.
