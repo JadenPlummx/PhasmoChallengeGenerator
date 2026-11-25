@@ -42,8 +42,10 @@ namespace PhasmoChallengeGenerator
             "If you investigate the ghost room without speaking...",
             "If you complete an optional objective...",
             "If you walk backwards for the next 30 seconds...",
-            "If you pretend you're a professional ghost hunter for one minute..."
-        };
+            "If you pretend you're a professional ghost hunter for one minute...",
+            "If the ghost decides you aren't worthy of their attention...",
+            "If the ghost is a Taylor Swift Fan...",
+            "If you're first piece of evidence is Freezing temperatures...."
 
         // Stores the possible consequences.
         string[] consequenceList = {
@@ -61,7 +63,10 @@ namespace PhasmoChallengeGenerator
             "You cannot use your head-mounted camera for 60 seconds.",
             "You must speak in a dramatic whisper for 1 minute.",
             "You must announce every piece of evidence like a news reporter.",
-            "You must apologize to the ghost before your next investigation."
+            "You must apologize to the ghost before your next investigation.",
+            "You must find a random bear and pet it",
+            "You must pack up and leave",
+            "You cannot sprint for the remainder of the game"
         };
 
         // Stores how difficult each action is to complete (1-10).
@@ -69,7 +74,8 @@ namespace PhasmoChallengeGenerator
         int[] actionDifficultyList = {
             5, 4, 7, 3, 6,
             5, 4, 6, 5, 7,
-            4, 6, 5, 3, 2
+            4, 6, 5, 3, 2,
+            9,1,2
         };
 
         // Stores how much each consequence affects the investigation (1-10).
@@ -77,7 +83,8 @@ namespace PhasmoChallengeGenerator
         int[] consequenceImpactList = {
             4, 3, 5, 7, 8,
             5, 6, 4, 6, 3,
-            7, 4, 2, 2, 2
+            7, 4, 2, 2, 2,
+            9,1,6
         };
 
         // Used to randomly select actions and consequences.
