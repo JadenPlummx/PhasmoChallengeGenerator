@@ -15,10 +15,11 @@
 
         <Grid Margin="20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
             <!-- Application Title -->
             <TextBlock Text="Phasmophobia Challenges"
@@ -52,10 +53,30 @@
 
             </StackPanel>
 
+            <!-- Displays how many challenges are active and completed -->
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,15">
+
+                <TextBlock x:Name="activeRuleCountText"
+                           Text="Active Challenges: 3"
+                           Foreground="LightGreen"
+                           FontWeight="Bold"
+                           Margin="10,0"/>
+
+                <TextBlock x:Name="completedRuleCountText"
+                           Text="Completed Challenges: 0"
+                           Foreground="LightGray"
+                           FontWeight="Bold"
+                           Margin="10,0"/>
+
+            </StackPanel>
+
             <!-- Ghost Hunting Rules (hopefully you survive) -->
             <!-- I made this a have a scroll bar incase I wanted to add more in the future -->
 
-            <ScrollViewer Grid.Row="2"
+            <ScrollViewer Grid.Row="3
                           VerticalScrollBarVisibility="Auto">
 
                 <StackPanel>
